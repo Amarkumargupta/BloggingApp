@@ -1,0 +1,8 @@
+@startuml
+
+class Post {
+    title:char[200]
+    
+}
+
+@enduml

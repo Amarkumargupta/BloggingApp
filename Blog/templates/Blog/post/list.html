@@ -1,0 +1,6 @@
+{% extends 'Blog/base.html' %} {% block content %} {% for post in Posts %}
+<a href="{{post.get_absolute_url}}">
+    <h2>{{post.title}} </h2>
+</a>
+<p>{{post.publish}} by <i>{{post.author}}</i> </p>
+{% endfor %} {% endblock %}
