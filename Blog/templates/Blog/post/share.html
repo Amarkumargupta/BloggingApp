@@ -1,0 +1,10 @@
+{% extends 'Blog/base.html' %} {% block content%}
+<h1>Share </h1>
+<form method="post">
+    {% csrf_token %} {% for form in Form %} {{form.errors}}
+    <p>{{form.label}}</p>
+    <p>{{form}}</p>
+    {% endfor %} <button type="submit">Share Post</button>
+</form>
+
+{% endblock %}

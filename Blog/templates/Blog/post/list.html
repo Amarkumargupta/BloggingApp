@@ -3,4 +3,4 @@
     <h2>{{post.title}} </h2>
 </a>
 <p>{{post.publish}} by <i>{{post.author}}</i> </p>
-{% endfor %} {% include "Blog/post/pagination.html" with page=Posts %} {% endblock %}
+{% endfor %} {% include "Blog/post/pagination.html" with page=page_obj %} {% endblock %}

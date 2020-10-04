@@ -100,13 +100,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMIAL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMIAL_HOST  = 'localhost'
+EMAIL_HOST_USER = 'ndtheboy04@gmail.com'
+EMAIL_HOST_PASSWORD = 'rajaji420'
+EMAIL_PORT = 1025
+EMAIL_USE_TLS = True 
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
