@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator ,EmptyPage,PageNotAnInteger
 from django.core.mail import send_mail 
 from django.views.generic import ListView
-from .models import Post
+from .models import Post,Comment
 from .forms import EmailPostForm, CommentForm
 class PostListView(ListView):
     queryset = Post.objects.filter(status='published')
@@ -41,11 +41,21 @@ def post_detail(request,year,month,day,post):
                 publish__year=year,
                 publish__month=month,
                 publish__day=day     )
+    if request.method == "POST":
+        C_Form = CommentForm(request.POST)
+        if C_Form.is_valid:
+            form_ins=C_Form.save(commit=False)
+            form_ins.post=post
+            form_ins.save()
+    
     commForm = CommentForm()
+    comments = Comment.objects.filter(post=post,active=True)
+    print(comments)
     context={
         'title':post.title,
         'post':post,
         'commentForm':commForm,
+        'comments':comments,
     }
     return render(request,'Blog/post/details.html',context)
 
