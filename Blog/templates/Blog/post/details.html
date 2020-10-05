@@ -5,4 +5,12 @@
 <p>
     <a href="{% url 'Blog:post_share' post.id %}">share this post</a>
 </p>
-{% endblock %}
+<form action="" method="post">
+    {% csrf_token %} {{ commentForm.as_p }}
+    <button type="submit">Comment</button>
+</form>
+{% for comm in post.comment_set.all %}
+<p>comm.name</p>
+<p>comm.email</p>
+<p>comm.body</p>
+{% endfor %} {% endblock %}
