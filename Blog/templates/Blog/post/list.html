@@ -1,6 +1,10 @@
 {% extends 'Blog/base.html' %} {% block content %} {% for post in Posts %}
-<a href="{{post.get_absolute_url}}">
-    <h2>{{post.title}} </h2>
-</a>
-<p>{{post.publish}} by <i>{{post.author}}</i> </p>
+<div class="card w-90 m-2 ml-0">
+    <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">{{post.publish}} by <i>{{post.author}}</i> </p>
+        <a href="{{post.get_absolute_url}}" class="btn btn-primary">Read</a>
+    </div>
+</div>
+
 {% endfor %} {% include "Blog/post/pagination.html" with page=page_obj %} {% endblock %}

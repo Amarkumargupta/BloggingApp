@@ -1,25 +1,44 @@
 {% extends 'Blog/base.html' %} {% block content %}
-<h1>{{post.title}}</h1>
-<p>{{post.publish}} by <i>{{post.author}}</i> </p>
-<h3>{{post.body|linebreaks}}</h3>
-<p>
-    <a href="{% url 'Blog:post_share' post.id %}">share this post</a>
-</p>
-{% with comments.count as total_comments%}
-<h2>{{total_comments}} comment {{total_comments |pluralize}}</h2>
-{% endwith %} {% for comm in comments %}
 
-<h3>
-    {{forloop.counter}}. {{comm.name}}</h3>
-<p>{{comm.created}}</p>
-<p>{{comm.body}}</p>
-<br> {% empty %}
-<p>Be first commeter </p> {% endfor %}
-<br>
-<h1>Comment Here </h1>
-<form action="" method="post">
-    {% csrf_token %} {{ commentForm.as_p }}
-    <button type="submit">Comment</button>
-</form>
+<div class="card mt-3">
+    <div class="card-body">
+        <h2 class="card-title">{{post.title}}</h2>
+        <div class="blockquote-footer">
+            {{post.publish}} by {{post.author}}
+        </div>
+        <p class="card-text">
+            <h4>{{post.body|linebreaks}}</h4>
+        </p>
+        <a href="{% url 'Blog:post_share' post.id %}" class="btn btn-primary">share this post</a>
+    </div>
 
+
+    <div class="card-header">
+        {% with comments.count as total_comments%} {{total_comments}} comment {{total_comments |pluralize}} {% endwith %}
+    </div>
+    {% for comm in comments %}
+    <div class="card-body">
+
+
+        <span class="card-title">
+            {{forloop.counter}}. {{comm.name}}
+            <p> {{comm.body}} </p>
+        </span>
+        <cite class='text-muted'>{{comm.created}}</cite>
+    </div>
+
+
+    <br> {% empty %} Be first commenter {% endfor %}
+    <br>
+    <div class="card-body mb-3">
+        <h5>Add your Comment Here </h5>
+        <div class="form-group">
+            <form action="" method="post">
+                {% csrf_token %} {{ commentForm.as_p }}
+                <button class="btn btn-primary" type="submit">Comment</button>
+            </form>
+        </div>
+    </div>
+
+</div>
 {% endblock %}

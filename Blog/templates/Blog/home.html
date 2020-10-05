@@ -1,0 +1,9 @@
+{% extends 'Blog/base.html' %} {% block content %}
+<div class="jumbotron ">
+    <h1 class="display-4">Hello, Sir</h1>
+    <p class="lead">This is a simple Blog app, I use django-python and some Bootstrape for styling.</p>
+    <hr class="my-4">
+    <p>sir username:admin ,password:amar1234 for admin login.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'Blog:post_list' %}" role="button">Posts..</a>
+</div>
+{% endblock %}

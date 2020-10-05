@@ -4,6 +4,8 @@ from django.core.mail import send_mail
 from django.views.generic import ListView
 from .models import Post,Comment
 from .forms import EmailPostForm, CommentForm
+def home(request):
+    return render(request,'Blog/home.html')
 class PostListView(ListView):
     queryset = Post.objects.filter(status='published')
     context_object_name = 'Posts'
